@@ -68,9 +68,8 @@ summary(model2)
 curve(f(model2,x), col='darkgreen', add=TRUE)
 
 legend(50, 400, c("Cases", "Deaths"), pch=c(1,4))
-text(20, 1000, substitute(alpha == x, list(x=round(coef(model1)[2],3))))
-text(20, 75000, substitute(alpha == x, list(x=round(coef(model2)[2],3))))
-text(20, 10000, expression(e^(alpha*t)))
+text(20,  1000, paste0(round(100*(exp(coef(model1)[2])-1),1), "% / day"))
+text(20, 75000, paste0(round(100*(exp(coef(model2)[2])-1),1), "% / day"))
 
 dev.off()
 
@@ -99,7 +98,7 @@ us_data <- data.frame(
   cases  = c(1, 1, 1, 1, 2, 4, 4, 4, 4, 5, 6, 7, 10, 10, 10,
              11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,
              11, 11, 11, 13, 13, 13, 13, 13, 13, 
-             14, 14, 18, 23, 41, 57, 85, 112, 175, 237),
+             14, 14, 18, 23, 41, 57, 85, 112, 175, 246),
   deaths = c(rep(0, 41), 3, 6, 9, 10, 14)
 )
 
@@ -113,7 +112,7 @@ us_pred <- exp(predict(us_model, data.frame(doy=58:100), interval=c("prediction"
 us_pred
 
 png("us.png")
-with(us_data,
+with(us_data,{
   plot(doy, cases, log="y",
     main="US COVID-19 Cases",
     sub="Non-repatriated",
@@ -123,7 +122,8 @@ with(us_data,
     ylim=c(1, 1e6),
     xlim=c(20, 100)
   )
-)
+  points(doy[deaths > 0], deaths[deaths > 0], pch=4)
+})
     
 polygon(
   c(58:100, 100:58),
@@ -139,6 +139,9 @@ ticksat <- as.vector(sapply(pow, function(p) (1:10)*10^p))
 axis(2, 10^pow, labels=format(10^pow, scientific=FALSE, big.mark=","))
 axis(2, ticksat, labels=NA, tcl=-0.25, lwd=0, lwd.ticks=1)
 curve(f(us_model,x), col='red', add=TRUE)
+
+text(52, 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), "% / day"))
+
 dev.off()
 
 
