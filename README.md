@@ -1,6 +1,6 @@
 # 2020 Coronavirus Outbreak
 
-Short bit of code to look at cases for China and US on semi-log scale.
+Short bit of code to look at cases for China and US on semi-log scale. Why the crazy scale? On a semi-log scale steady exponential growth is a straight line. It's far easier to interpret looking for straight lines to show relativly steady percent growth per day. 
 
 
 ![China Data](./China.png)

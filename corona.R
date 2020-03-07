@@ -98,7 +98,7 @@ us_data <- data.frame(
   cases  = c(1, 1, 1, 1, 2, 4, 4, 4, 4, 5, 6, 7, 10, 10, 10,
              11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,
              11, 11, 11, 13, 13, 13, 13, 13, 13, 
-             14, 14, 18, 23, 41, 57, 85, 112, 175, 246),
+             14, 14, 18, 23, 41, 57, 85, 112, 175, 250),
   deaths = c(rep(0, 41), 3, 6, 9, 10, 14)
 )
 
@@ -114,8 +114,7 @@ us_pred
 png("us.png")
 with(us_data,{
   plot(doy, cases, log="y",
-    main="US COVID-19 Cases",
-    sub="Non-repatriated",
+    main="Non-repatriated US COVID-19 Cases",
     xlab="2020 Julian Day",
     ylab="Cases (semilog)",
     yaxt="n",
@@ -141,6 +140,7 @@ axis(2, ticksat, labels=NA, tcl=-0.25, lwd=0, lwd.ticks=1)
 curve(f(us_model,x), col='red', add=TRUE)
 
 text(52, 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), "% / day"))
+legend(30, 50000, c("Cases", "Deaths"), pch=c(1,4))
 
 dev.off()
 
