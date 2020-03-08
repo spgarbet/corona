@@ -98,7 +98,8 @@ with(us_data,{
     ylab="Cases (semilog)",
     yaxt="n",
     ylim=c(1, 1e6),
-    xlim=c(20, 100)
+    xlim=c(20, 100),
+    sub="Source: John Hopkins Curated Dataset"
   )
   points(doy[deaths > 0], deaths[deaths > 0], pch=4)
 })
@@ -118,7 +119,10 @@ axis(2, 10^pow, labels=format(10^pow, scientific=FALSE, big.mark=","))
 axis(2, ticksat, labels=NA, tcl=-0.25, lwd=0, lwd.ticks=1)
 curve(f(us_model,x), col='red', add=TRUE)
 
-text(52, 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), "% / day"))
+text(72, 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), "% / day"))
+abline(v=57, col='blue')
+text(57, 100000, "Trump", pos=4)
+text(57, 65000, "'We’re going very substantially down, not up.'", pos=4, cex=0.75)
 legend(30, 50000, c("Cases", "Deaths"), pch=c(1,4))
 
 dev.off()
