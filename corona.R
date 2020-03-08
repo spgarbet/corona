@@ -20,8 +20,6 @@ china_data <- data.frame(
              2981,3012,3042)
 )
 
-
-
 # Unfortunately, not automated yet
 us_data$deaths    <- c(rep(0, 40), 3, 6, 9, 10, 14, 19)
 
