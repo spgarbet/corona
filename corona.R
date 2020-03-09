@@ -21,7 +21,7 @@ china_data <- data.frame(
 )
 
 # Unfortunately, not automated yet
-us_data$deaths    <- c(rep(0, 40), 3, 6, 9, 10, 14, 19)
+us_data$deaths    <- c(rep(0, 40), 3, 6, 9, 10, 14, 19, 22)
 
 model1 <- lm(log(cases) ~ doy, china_data[16:28-15,])
 summary(model1)
@@ -121,9 +121,9 @@ curve(f(us_model,x), col='red', add=TRUE)
 
 text(72, 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), "% / day"))
 abline(v=57, col='blue')
-text(57, 100000, "Trump", pos=4)
-text(57, 65000, "'We’re going very substantially down, not up.'", pos=4, cex=0.75)
-legend(30, 50000, c("Cases", "Deaths"), pch=c(1,4))
+text(57, 100000, "Trump", pos=2)
+text(57, 65000, "'We’re going very substantially down, not up.'", pos=2, cex=0.70)
+legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 
 dev.off()
 

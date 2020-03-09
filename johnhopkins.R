@@ -39,8 +39,17 @@ china_data <- rbind(
   )
 )
 rownames(china_data) <- NULL
-
 rm(china_raw)
+
+italy_raw <- hopkins[hopkins$Country.Region == 'Italy' ,5:ncol(hopkins)]
+italy_data <- data.frame(
+  date=dates,
+  doy=doy,
+  cases=colSums(italy_raw)
+)
+rownames(italy_data) <- NULL
+rm(italy_raw)
+
 rm(doy)
 rm(dates)
 rm(hopkins)
