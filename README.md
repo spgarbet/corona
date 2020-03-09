@@ -14,3 +14,11 @@ The China data shows a clear effect of the quarantine. The estimated slope of th
 US Data comes from John Hopkins. CDC data quality post Trump intervention has become unreliable.
 
 Exponential prediction is based on assumption that nothing occurs to change the current growth rate. This is obviously false, as the China data shows. The question is when will measures be put in place, how effective will they be or are we just going to wait for saturation to happen.
+
+![Italy Data](./italy.png)
+
+I've been asked for Italy data. They quarantined early and I've put the axis as the same with the US so slopes can easily be compared.
+
+![South Korea](./sk.png)
+
+And South Korea is the other hot spot. It appeared to be well contained until a member of the Shincheonji church did not self-quarantine and went to mass gatherings. Later school and social event closures occurred, combined with drive through free testing.

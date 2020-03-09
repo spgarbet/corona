@@ -52,7 +52,6 @@ hopkins <- function(region, excludes=NULL)
   cases
 }
   
-us_data    <- hopkins("US", "Diamond Princess")
-china_data <- hopkins("Mainland China")
+
 
 
