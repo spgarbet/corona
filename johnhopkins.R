@@ -1,57 +1,58 @@
 library(chron)
 
-hopkins <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv")
-
-us_raw <- hopkins[hopkins$Country.Region == 'US',]
-diamond_princess <- grepl("Diamond Princess", as.character(us_raw$Province.State))
-us_raw <- us_raw[!diamond_princess, 5:ncol(us_raw)]
-
-dates <- strsplit(substr(colnames(us_raw), 2, nchar(colnames(us_raw))), "[.]")
-doy   <- julian(
-  sapply(dates, function(x) as.numeric(x[1])),
-  sapply(dates, function(x) as.numeric(x[2])),
-  sapply(dates, function(x) as.numeric(x[3]))+2000,
-  c(month=1, day=1, year=2020))+1
-dates <- sapply(dates, function(x) paste0(x[1], "/", x[2], "/20", x[3]))
-
-us_data <- data.frame(
-  date   = dates,
-  doy    = doy,
-  cases  = colSums(us_raw)
-)
-
-rownames(us_data) <- NULL
-rm(diamond_princess)
-rm(us_raw)
-
-china_raw <- hopkins[hopkins$Country.Region == 'Mainland China' ,5:ncol(hopkins)]
-
-china_data <- rbind(
-  data.frame(
-    date   = paste0("1/",16:21,"/20"), 
-    doy    = 16:21,
-    cases  = c(45, 62, 121, 198, 291, 440)
-  ),
-  data.frame(
+hopkins_timeseries <- function(region, category, excludes=NULL)
+{
+  source <- if(category == "cases") 
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv" else
+  if(category == "deaths")
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"    else
+  if(category == "recoveries")
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv" else
+  stop("hopkins_raw category must be one of the following: cases, deaths, recoveries")
+  
+  data <- read.csv(source)
+  raw  <- data[data$Country.Region %in% region,]
+  if(!is.null(excludes))
+  {
+    keep <- !Reduce(`|`, lapply(excludes, function(x) grepl(x, as.character(raw$Province.State), ignore.case=TRUE)))
+    raw  <- raw[keep,]
+  }
+  raw  <- raw[,5:ncol(raw)]
+  
+  dates <- strsplit(substr(colnames(raw), 2, nchar(colnames(raw))), "[.]")
+  doy   <- julian(
+    sapply(dates, function(x) as.numeric(x[1])),
+    sapply(dates, function(x) as.numeric(x[2])),
+    sapply(dates, function(x) as.numeric(x[3]))+2000,
+    c(month=1, day=1, year=2020))+1
+  dates <- sapply(dates, function(x) paste0(x[1], "/", x[2], "/20", x[3]))
+  
+  data <- data.frame(
     date   = dates,
     doy    = doy,
-    cases  = colSums(china_raw)
+    count  = colSums(raw)
   )
-)
-rownames(china_data) <- NULL
-rm(china_raw)
+  
+  rownames(data) <- NULL
+  colnames(data) <- c("date", "doy", category)
+  
+  data
+}
 
-italy_raw <- hopkins[hopkins$Country.Region == 'Italy' ,5:ncol(hopkins)]
-italy_data <- data.frame(
-  date=dates,
-  doy=doy,
-  cases=colSums(italy_raw)
-)
-rownames(italy_data) <- NULL
-rm(italy_raw)
-
-rm(doy)
-rm(dates)
-rm(hopkins)
+hopkins <- function(region, excludes=NULL)
+{
+  cases      <- hopkins_timeseries(region, "cases",  excludes)
+  deaths     <- hopkins_timeseries(region, "deaths", excludes)
+  recoveries <- hopkins_timeseries(region, "recoveries", excludes)
+  
+  # This assumes consistency between published datasets
+  cases$deaths     <- deaths$deaths
+  cases$recoveries <- recoveries$recoveries
+  
+  cases
+}
+  
+us_data    <- hopkins("US", "Diamond Princess")
+china_data <- hopkins("Mainland China")
 
 
