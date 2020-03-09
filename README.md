@@ -17,7 +17,7 @@ Exponential prediction is based on assumption that nothing occurs to change the 
 
 ![Italy Data](./italy.png)
 
-I've been asked for Italy data. They quarantined early and I've put the axis as the same with the US so slopes can easily be compared.
+I've been asked for Italy data. They quarantined early and I've put the axis as the same with the US so slopes can easily be compared. The break in the line at day 60 (2/29) is odd, and I have been unable to find any news article of a major change implemented at that point, but it appears that something in the environment changed the rate at that point.
 
 ![South Korea](./sk.png)
 
