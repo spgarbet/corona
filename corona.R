@@ -81,7 +81,7 @@ dev.off()
 
 # Number table of predictions
 us_pred      <- as.data.frame(round(us_pred))
-mdy          <- month.day.year(58:100, c(month=1, day=1, year=2020))
+mdy          <- month.day.year(58:100 - 1, c(month=1, day=1, year=2020))
 us_pred$date <- ISOdatetime(mdy$year, mdy$month, mdy$day, 0, 0, 0)
 
 
