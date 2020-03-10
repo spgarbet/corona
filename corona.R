@@ -3,7 +3,7 @@
 
 source('johnhopkins.R')
 
-us_data    <- hopkins("US", "Diamond Princess")
+us_data    <- hopkins("US", "Princess")
 china_data <- hopkins("Mainland China")
 italy_data <- hopkins("Italy")
 sk_data    <- hopkins("South Korea")
