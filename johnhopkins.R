@@ -17,9 +17,9 @@ hopkins_timeseries <- function(region, category, excludes=NULL)
     keep <- !Reduce(`|`, lapply(excludes, function(x) grepl(x, as.character(raw$Province.State), ignore.case=TRUE)))
     raw  <- raw[keep,]
   }
-  raw  <- raw[,5:ncol(raw)]
+  counts  <- raw[,5:ncol(raw)]
   
-  dates <- strsplit(substr(colnames(raw), 2, nchar(colnames(raw))), "[.]")
+  dates <- strsplit(substr(colnames(counts), 2, nchar(colnames(counts))), "[.]")
   doy   <- julian(
     sapply(dates, function(x) as.numeric(x[1])),
     sapply(dates, function(x) as.numeric(x[2])),
@@ -27,10 +27,29 @@ hopkins_timeseries <- function(region, category, excludes=NULL)
     c(month=1, day=1, year=2020))+1
   dates <- sapply(dates, function(x) paste0(x[1], "/", x[2], "/20", x[3]))
   
+  # Goddamn it John Hopkins, why the mixed data now? 
+  # If they recorded it consistently then this wouldn't be so difficult
+  counts <- if(region == "US")
+  {
+    county.level <- !Reduce(`|`, lapply(
+      c("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID",
+        "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+        "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
+        "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY")
+      , function(x) grepl(x, as.character(raw$Province.State))))
+    
+    raw1 <- raw[county.level,5:ncol(raw)]
+    raw2 <- raw[!county.level,5:ncol(raw)]
+    pmax(colSums(raw1), colSums(raw2))
+  } else
+  {
+    colSums(raw[,5:ncol(raw)])
+  }
+  
   data <- data.frame(
     date   = dates,
     doy    = doy,
-    count  = colSums(raw)
+    count  = counts
   )
   
   rownames(data) <- NULL
