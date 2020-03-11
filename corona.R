@@ -6,7 +6,7 @@ source('johnhopkins.R')
 us_data    <- hopkins("US", "Princess")
 china_data <- hopkins("Mainland China")
 italy_data <- hopkins("Italy")
-sk_data    <- hopkins("South Korea")
+sk_data    <- hopkins("Republic of Korea")
 
 semilog    <- function(data, ...)
 {
