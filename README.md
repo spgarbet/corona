@@ -17,7 +17,7 @@ Exponential prediction is based on assumption that nothing occurs to change the 
 
 ![Italy Data](./italy.png)
 
-I've been asked for Italy data. They quarantined early and I've put the axis as the same with the US so slopes can easily be compared. The break in the line at day 60 (2/29) is odd, and I have been unable to find any news article of a major change implemented at that point, but it appears that something in the environment changed the rate at that point.
+I've been asked for Italy data. They quarantined early and I've put the axis as the same with the US so slopes can easily be compared. The break in the slope at day 60 (2/29) is consistent with incubation times post exposure being around 5 days.
 
 ![South Korea](./sk.png)
 
@@ -26,3 +26,17 @@ And South Korea is the other hot spot. It appeared to be well contained until a 
 # Conclusions
 
 One thing that is clear from these plots is the quarantine and other social distancing measures are effective in slowing the growth. Given the nature of exponential growth, it is desirable to put these measure in as early as possible rather than later. 
+
+## More Countries
+
+Note the growth rates are very similar
+
+![Iran](./iran.png)
+
+![Spain](./spain.png)
+
+![Germany](./germany.png)
+
+![France](./france.png)
+
+

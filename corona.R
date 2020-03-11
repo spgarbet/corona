@@ -122,3 +122,58 @@ text(60, 50000, "Mass\nClosures", pos=2)
 
 legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
+
+iran_data <- hopkins('Iran (Islamic Republic of)')
+png('iran.png')
+semilog(
+  iran_data,
+  ylim=c(1, 1e6),
+  xlim=c(20, 100),
+  main="Iran COVID-19 Cases",
+  sub="Source: John Hopkins Curated Dataset"
+)
+
+legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+dev.off()
+
+
+spain_data <- hopkins('Spain')
+png('spain.png')
+semilog(
+  spain_data,
+  ylim=c(1, 1e6),
+  xlim=c(20, 100),
+  main="Spain COVID-19 Cases",
+  sub="Source: John Hopkins Curated Dataset"
+)
+
+legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+dev.off()
+
+
+france_data <- hopkins('France')
+png('france.png')
+semilog(
+  france_data,
+  ylim=c(1, 1e6),
+  xlim=c(20, 100),
+  main="France COVID-19 Cases",
+  sub="Source: John Hopkins Curated Dataset"
+)
+
+legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+dev.off()
+
+
+germany_data <- hopkins('Germany')
+png('germany.png')
+semilog(
+  germany_data,
+  ylim=c(1, 1e6),
+  xlim=c(20, 100),
+  main="Germany COVID-19 Cases",
+  sub="Source: John Hopkins Curated Dataset"
+)
+
+legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+dev.off()
