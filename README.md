@@ -11,7 +11,7 @@ The China data shows a clear effect of the quarantine. The estimated slope of th
 
 ![US Data](./us.png)
 
-US Data comes from John Hopkins. CDC data quality post Trump intervention has become unreliable.
+US Data comes from John Hopkins.
 
 Exponential prediction is based on assumption that nothing occurs to change the current growth rate. This is obviously false, as the China data shows. The question is when will measures be put in place, how effective will they be or are we just going to wait for saturation to happen.
 

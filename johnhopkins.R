@@ -40,7 +40,7 @@ hopkins_timeseries <- function(region, category, excludes=NULL)
     
     raw1 <- raw[county.level,5:ncol(raw)]
     raw2 <- raw[!county.level,5:ncol(raw)]
-    pmax(colSums(raw1), colSums(raw2))
+    pmax(colSums(raw1), colSums(raw2), na.rm=TRUE)
   } else
   {
     colSums(raw[,5:ncol(raw)])
