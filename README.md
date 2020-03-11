@@ -22,3 +22,7 @@ I've been asked for Italy data. They quarantined early and I've put the axis as 
 ![South Korea](./sk.png)
 
 And South Korea is the other hot spot. It appeared to be well contained until a member of the Shincheonji church did not self-quarantine and went to mass gatherings. Later school and social event closures occurred, combined with drive through free testing.
+
+# Conclusions
+
+One thing that is clear from these plots is the quarantine and other social distancing measures are effective in slowing the growth. Given the nature of exponential growth, it is desirable to put these measure in as early as possible rather than later. 
