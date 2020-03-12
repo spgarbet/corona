@@ -15,6 +15,8 @@ US Data comes from John Hopkins.
 
 Exponential prediction is based on assumption that nothing occurs to change the current growth rate. This is obviously false, as the China data shows. The question is when will measures be put in place, how effective will they be or are we just going to wait for saturation to happen.
 
+The first broad measure has been taken. A Europe travel ban. The graph clearly shows it spreading inside the US. Prediction: It's too late for any such measure to have much effect. 
+
 ![Italy Data](./italy.png)
 
 I've been asked for Italy data. They quarantined early and I've put the axis as the same with the US so slopes can easily be compared. The break in the slope at day 60 (2/29) is consistent with incubation times post exposure being around 5 days.

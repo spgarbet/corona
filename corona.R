@@ -29,16 +29,12 @@ semilog    <- function(data, ...)
   })
 }
 
-model1 <- lm(log(cases) ~ doy, china_data[16:28-15,])
-summary(model1)
-
 # Plot straight lines from exponential model
 expgrowth <- function(model, x)
 {
   cf <- coef(model)
   exp(cf[1] + x*cf[2])
 }
-
 
 df <- us_data[38:length(us_data$doy),]
 
@@ -75,6 +71,10 @@ abline(v=57, col='blue')
 text(57, 100000, "Trump", pos=2)
 text(57, 65000, "'We’re going very substantially down, not up.'", pos=2, cex=0.70)
 legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+
+abline(v=72, col='blue')
+text(72, 10000, "Europe",pos=2)
+text(72,  6500, "Travel Ban", pos=2)
 
 dev.off()
 
