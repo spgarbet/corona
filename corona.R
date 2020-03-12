@@ -123,7 +123,7 @@ text(60, 50000, "Mass\nClosures", pos=2)
 legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
-iran_data <- hopkins('Iran (Islamic Republic of)')
+iran_data <- hopkins('Iran')
 png('iran.png')
 semilog(
   iran_data,
