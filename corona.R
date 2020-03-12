@@ -3,10 +3,10 @@
 
 source('johnhopkins.R')
 
-us_data    <- hopkins("US", "Princess")
+us_data    <- hopkins("US", excludes="Princess")
 china_data <- hopkins("Mainland China")
 italy_data <- hopkins("Italy")
-sk_data    <- hopkins("Republic of Korea")
+sk_data    <- hopkins("Korea, South")
 
 semilog    <- function(data, ...)
 {
