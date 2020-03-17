@@ -36,14 +36,17 @@ expgrowth <- function(model, x)
   exp(cf[1] + x*cf[2])
 }
 
-df <- us_data[38:length(us_data$doy),]
+#df <- us_data[38:length(us_data$doy),]
+df <- us_data[38:69,]
 
 us_model <- lm(log(cases) ~ doy, df)
 
 summary(us_model)
 
-us_pred <- exp(predict(us_model, data.frame(doy=58:100), interval=c("prediction")))
-us_pred
+p_rng <- 58:100
+
+us_pred <- exp(predict(us_model, data.frame(doy=p_rng), interval=c("prediction")))
+us_pred 
 
 png("us.png")
 
@@ -56,10 +59,10 @@ semilog(
 )
 
 polygon(
-  c(58:100, 100:58),
+  c(p_rng, rev(p_rng)),
   c(us_pred[,2], rev(us_pred[,3])),
   border=FALSE,
-  col=rgb(0, 0, 0, 0.3))
+  col=rgb(0, 0, 0, 0.2))
   
 
 # Annotations to US Plot
@@ -81,7 +84,7 @@ dev.off()
 
 # Number table of predictions
 us_pred      <- as.data.frame(round(us_pred))
-mdy          <- month.day.year(58:100 - 1, c(month=1, day=1, year=2020))
+mdy          <- month.day.year(p_rng - 1, c(month=1, day=1, year=2020))
 us_pred$date <- ISOdatetime(mdy$year, mdy$month, mdy$day, 0, 0, 0)
 
 
