@@ -59,7 +59,7 @@ I've been asked for Italy data. They quarantined early and I've put the axis as 
 
 ![South Korea](./sk.png)
 
-And South Korea is the other hot spot. It appeared to be well contained until a member of the Shincheonji church did not self-quarantine and went to mass gatherings. Later school and social event closures occurred, combined with drive through free testing.
+And South Korea is the other hot spot. It appeared to be well contained until a member of the Shincheonji church did not self-quarantine and went to mass gatherings. Later school and social event closures occurred, combined with drive through free testing, and fever isolation from families. Special hotels for isolation at the moment of case detection are provided.
 
 ## Conclusions
 
