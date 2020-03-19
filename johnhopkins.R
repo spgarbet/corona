@@ -29,22 +29,25 @@ hopkins_timeseries <- function(region, category, excludes=NULL)
   
   # Goddamn it John Hopkins, why the mixed data now? 
   # If they recorded it consistently then this wouldn't be so difficult
-  counts <- if(region == "US")
-  {
-    county.level <- !Reduce(`|`, lapply(
-      c("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID",
-        "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
-        "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
-        "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY")
-      , function(x) grepl(x, as.character(raw$Province.State))))
-    
-    raw1 <- raw[county.level,5:ncol(raw)]
-    raw2 <- raw[!county.level,5:ncol(raw)]
-    pmax(colSums(raw1), colSums(raw2), na.rm=TRUE)
-  } else
-  {
-    colSums(raw[,5:ncol(raw)])
-  }
+  # And now they changed it back to just simple sum
+  counts <-  colSums(raw[,5:ncol(raw)])
+  
+  # <- if(region == "US")
+  # {
+  #   county.level <- !Reduce(`|`, lapply(
+  #     c("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID",
+  #       "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+  #       "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
+  #       "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY")
+  #     , function(x) grepl(x, as.character(raw$Province.State))))
+  #   
+  #   raw1 <- raw[county.level,5:ncol(raw)]
+  #   raw2 <- raw[!county.level,5:ncol(raw)]
+  #   pmax(colSums(raw1), colSums(raw2), na.rm=TRUE)
+  # } else
+  # {
+  #   colSums(raw[,5:ncol(raw)])
+  # }
   
   data <- data.frame(
     date   = dates,
@@ -60,8 +63,8 @@ hopkins_timeseries <- function(region, category, excludes=NULL)
 
 hopkins <- function(region, excludes=NULL)
 {
-  cases      <- hopkins_timeseries(region, "cases",  excludes)
-  deaths     <- hopkins_timeseries(region, "deaths", excludes)
+  cases      <- hopkins_timeseries(region, "cases",      excludes)
+  deaths     <- hopkins_timeseries(region, "deaths",     excludes)
   recoveries <- hopkins_timeseries(region, "recoveries", excludes)
   
   # This assumes consistency between published datasets

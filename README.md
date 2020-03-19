@@ -49,6 +49,7 @@ The first broad measure has been taken. A Europe travel ban. The graph clearly s
 * March 11: “... very important for all countries & businesses to know that trade will in no way be affected by the 30-day restriction on travel from Europe. The restriction stops people not goods.”
 * March 13 “I am hereby declaring a federal emergency. Two very big words. ... No I don't take responsibility at all. ... Sometimes pandemic response teams just get let go.”
 * March 18 “People are dying that never died before.“
+* March 18 “I always treated the Chinese Virus very seriously, and have done a very good job from the beginning, including my very early decision to close the “borders” from China - against the wishes of almost all. Many lives were saved. The Fake News new narrative is disgraceful & false!“
 
 ## Italy
 
