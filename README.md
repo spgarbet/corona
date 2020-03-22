@@ -18,9 +18,9 @@ US Data comes from John Hopkins.
 
 Exponential prediction interval is computed based on day 38 to 69. It stops at the first little jump before the travel ban. It appears that after this a new rate is getting establish that is a little slower, but it's still within predicted interval. Doubling time is still approximately 2 days.
 
-Exponential prediction is based on assumption that nothing occurs to change the current growth rate.uThis is obviously false, as the China data shows. The question is when will measures be put in place, how effective will they be or are we just going to wait for saturation to happen.
+Exponential prediction is based on assumption that nothing occurs to change the current growth rate. This is obviously false, as the China data shows. The question is when will measures be put in place, how effective will they be or are we just going to wait for saturation to happen.
 
-The first broad measure has been taken. A Europe travel ban. The graph clearly shows it spreading inside the US. Prediction: It's too late for any such measure to have much effect. 
+The first broad measure has been taken. A Europe travel ban. The graph clearly shows it spreading inside the US. Prediction: It's too late for any such measure to have much effect. It's like getting bedbugs and saying we're no longer going to be visiting hotels to stop them.
 
 ### Trump Quotes
 
