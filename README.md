@@ -64,9 +64,13 @@ I've been asked for Italy data. They quarantined early and I've put the axis as 
 
 And South Korea is the other hot spot. It appeared to be well contained until a member of the Shincheonji church did not self-quarantine and went to mass gatherings. Later school and social event closures occurred, combined with drive through free testing, and fever isolation from families. Special hotels for isolation at the moment of case detection are provided.
 
+South Korea's response is the model to follow. They put a lid on this thing early and kept it under control. 
+
 ## Conclusions
 
-One thing that is clear from these plots is the quarantine and other social distancing measures are effective in slowing the growth. Given the nature of exponential growth, it is desirable to put these measure in as early as possible rather than later. 
+One thing that is clear from these plots is that quarantine and other social distancing measures are effective in slowing the growth--but vary greatly depending upon implementation. Given the nature of exponential growth, it is desirable to put these measure in as early as possible rather than later. 
+
+The United States and South Korea both had the same advance warning. The outcomes to date could not be more different. The United States has demonstrated little to no control over it's spread, while South Korea has effectively halted the spread. Drive thru rapid testing with mandatory isolation quarantine, not the "please stay home" voluntary quarantine with family and friends, is *obviously* the route to containing the spread.
 
 ## More Countries
 
@@ -79,5 +83,11 @@ Note the growth rates are very similar
 ![Germany](./germany.png)
 
 ![France](./france.png)
+
+
+## Norway's policies are having an impact
+
+![Norway](./norway.png)
+
 
 

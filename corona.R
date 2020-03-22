@@ -180,3 +180,16 @@ semilog(
 
 legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
+
+norway_data <- hopkins('Norway')
+png('norway.png')
+semilog(
+  norway_data,
+  ylim=c(1, 1e6),
+  xlim=c(20, 100),
+  main="Norway COVID-19 Cases",
+  sub="Source: John Hopkins Curated Dataset"
+)
+
+legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+dev.off()
