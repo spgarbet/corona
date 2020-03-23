@@ -47,6 +47,7 @@ The first broad measure has been taken. A Europe travel ban. The graph clearly s
 * March 9: “This blindsided the world.”
 * March 11: “To keep new cases from entering our shores, we will be suspending all travel from Europe to the United States for the next 30 days. The new rules will go into effect Friday at midnight. These restrictions will be adjusted subject to conditions on the ground. There will be exemptions for Americans who have undergone appropriate screenings, and these prohibitions will not only apply to the tremendous amount of trade and cargo, but various other things as we get approval.  Anything coming from Europe to the United States is what we are discussing. These restrictions will also not apply to the United Kingdom.”
 * March 11: “... very important for all countries & businesses to know that trade will in no way be affected by the 30-day restriction on travel from Europe. The restriction stops people not goods.”
+* March 11: ”The virus will not have a chance against us.”
 * March 13 “I am hereby declaring a federal emergency. Two very big words. ... No I don't take responsibility at all. ... Sometimes pandemic response teams just get let go.”
 * March 18 “People are dying that never died before.“
 * March 18 “I always treated the Chinese Virus very seriously, and have done a very good job from the beginning, including my very early decision to close the “borders” from China - against the wishes of almost all. Many lives were saved. The Fake News new narrative is disgraceful & false!“
