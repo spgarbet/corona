@@ -72,6 +72,8 @@ One thing that is clear from these plots is that quarantine and other social dis
 
 The United States and South Korea both had the same advance warning. The outcomes to date could not be more different. The United States has demonstrated little to no control over it's spread, while South Korea has effectively halted the spread. Drive thru rapid testing with mandatory isolation quarantine, not the "please stay home" voluntary quarantine with family and friends, is *obviously* the route to containing the spread.
 
+The vertical graph distance between deaths and cases is likely roughly proportional to the underlying case fatality rate in the population. This rate is due to many factors, such as age structure of population (i.e more or less elderly), population genomic distributions, quality and availability of care. However, testing availability and guidelines also influence this distance and most countries here have roughly parallel plots, except for the US and Iran. In the US it's a widening distance, which could be explained by testing improving and more cases being identified--this would imply that the slope of the US data is not just case growth, but growth in ability to test as well and also that it's been spreading earlier than the graph implies. 
+
 ## More Countries
 
 Note the growth rates are very similar
