@@ -2,6 +2,8 @@
 
 Short bit of code to look at cases for China and US on semi-log scale. Why the crazy scale? On a semi-log scale steady exponential growth is a straight line. It's far easier to interpret looking for straight lines to show relativly steady percent growth per day. 
 
+I am not speaking for Vanderbilt University Medical Center. I do work there, but this is not affiated nor to be construed in any way as relating to their policies or statements. 
+
 ## China
 
 ![China Data](./China.png)

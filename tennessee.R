@@ -1,4 +1,5 @@
 source("johnhopkins.R")
+source("semilog.R")
 
 
 tennessee_timeseries <- function(category)
@@ -51,4 +52,12 @@ tennessee <- function()
   
   cases
 }
+
+semilog(
+  tennessee(),
+  ylim=c(1, 1e6),
+  xlim=c(20, 100),
+  main="Tennessee COVID-19 Cases",
+  sub="Source: John Hopkins Curated Dataset"
+)
 
