@@ -30,7 +30,7 @@ hopkins_timeseries <- function(region, category, excludes=NULL)
   # Goddamn it John Hopkins, why the mixed data now? 
   # If they recorded it consistently then this wouldn't be so difficult
   # And now they changed it back to just simple sum
-  counts <-  colSums(raw[,5:ncol(raw)])
+  counts <-  colSums(raw[,5:ncol(raw)], na.rm=TRUE)
   
   # <- if(region == "US")
   # {
