@@ -3,11 +3,11 @@ library(chron)
 hopkins_timeseries <- function(region, category, excludes=NULL)
 {
   source <- if(category == "cases") 
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv" else
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv" else
   if(category == "deaths")
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"    else
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"    else
   if(category == "recoveries")
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv" else
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv" else
   stop("hopkins_raw category must be one of the following: cases, deaths, recoveries")
   
   data <- read.csv(source)
@@ -65,11 +65,11 @@ hopkins <- function(region, excludes=NULL)
 {
   cases      <- hopkins_timeseries(region, "cases",      excludes)
   deaths     <- hopkins_timeseries(region, "deaths",     excludes)
-  recoveries <- hopkins_timeseries(region, "recoveries", excludes)
+  #recoveries <- hopkins_timeseries(region, "recoveries", excludes)
   
   # This assumes consistency between published datasets
   cases$deaths     <- deaths$deaths
-  cases$recoveries <- recoveries$recoveries
+  #cases$recoveries <- recoveries$recoveries
   
   cases
 }

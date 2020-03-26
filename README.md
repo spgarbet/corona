@@ -24,6 +24,8 @@ Exponential prediction is based on assumption that nothing occurs to change the 
 
 The first broad measure has been taken. A Europe travel ban. The graph clearly shows it spreading inside the US. Prediction: It's too late for any such measure to have much effect. It's like getting bedbugs and saying we're no longer going to be visiting hotels to stop them.
 
+NOTE: John Hopkins has changed their data feed and to exclude re-patriated (the bump off the line near the lift off point) is difficult and will require rewriting, my script. I'm going ahead and publishing what exists.
+
 ### Trump Quotes
 
 * January 22: “We have it totally under control. It’s one person coming in from China. It’s going to be just fine.”
