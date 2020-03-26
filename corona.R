@@ -4,10 +4,14 @@
 source('johnhopkins.R')
 source('semilog.R')
 
-us_data    <- hopkins("US", excludes="Princess")
-china_data <- hopkins("Mainland China")
-italy_data <- hopkins("Italy")
-sk_data    <- hopkins("Korea, South")
+raw        <- hopkins_raw()
+
+us_data    <- hopkins("US", province.excludes="Princess", raw=raw)
+china_data <- hopkins("Mainland China",          raw=raw)
+italy_data <- hopkins("Italy",                   raw=raw)
+
+# Come on JH, keep naming consistent at least!
+sk_data    <- hopkins(c("Korea, South", "South Korea", "Republic of Korea"), raw=raw)
 
 
 
@@ -101,7 +105,7 @@ text(60, 50000, "Mass\nClosures", pos=2)
 legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
-iran_data <- hopkins('Iran')
+iran_data <- hopkins('Iran', raw=raw)
 png('iran.png')
 semilog(
   iran_data,
@@ -115,7 +119,7 @@ legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 
-spain_data <- hopkins('Spain')
+spain_data <- hopkins('Spain', raw=raw)
 png('spain.png')
 semilog(
   spain_data,
@@ -129,7 +133,7 @@ legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 
-france_data <- hopkins('France')
+france_data <- hopkins('France', raw=raw)
 png('france.png')
 semilog(
   france_data,
@@ -143,7 +147,7 @@ legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 
-germany_data <- hopkins('Germany')
+germany_data <- hopkins('Germany', raw=raw)
 png('germany.png')
 semilog(
   germany_data,
@@ -156,7 +160,7 @@ semilog(
 legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
-norway_data <- hopkins('Norway')
+norway_data <- hopkins('Norway', raw=raw)
 png('norway.png')
 semilog(
   norway_data,

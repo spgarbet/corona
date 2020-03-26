@@ -1,78 +1,71 @@
 library(chron)
 
-hopkins_timeseries <- function(region, category, excludes=NULL)
+hopkins_daily <- function(date, verbose=FALSE)
 {
-  source <- if(category == "cases") 
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv" else
-  if(category == "deaths")
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"    else
-  if(category == "recoveries")
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv" else
-  stop("hopkins_raw category must be one of the following: cases, deaths, recoveries")
+  root <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
+
+  if(class(date) == "Date") date <- format(date, "%m-%d-%Y")
   
-  data <- read.csv(source)
-  raw  <- data[data$Country.Region %in% region,]
-  if(!is.null(excludes))
+  if(verbose) cat("Pulling", date, "from John Hopkins github\n")
+  
+
+  data <- read.csv(paste0(root, date, ".csv"))
+  if(verbose) cat(" ", colnames(data), "\n")
+  
+  
+  x    <- strsplit(substr(date, 2, nchar(date)), "-")[[1]]
+  doy  <- julian( as.numeric(x[1]),
+                  as.numeric(x[2]),
+                  as.numeric(x[3]),
+                  c(month=1, day=1, year=2020)) + 1
+  
+  # John Hopkins does not maintain consistent naming
+  if(as.Date(date,"%m-%d-%Y") < as.Date("03-22-2020", "%m-%d-%Y"))
+    data <- data[,c("Province.State", "Country.Region", "Confirmed", "Deaths")]
+  else
   {
-    keep <- !Reduce(`|`, lapply(excludes, function(x) grepl(x, as.character(raw$Province.State), ignore.case=TRUE)))
-    raw  <- raw[keep,]
+    data <- data[,c("Province_State", "Country_Region", "Confirmed", "Deaths")]
+    colnames(data) <- c("Province.State", "Country.Region", "Confirmed", "Deaths")
   }
-  counts  <- raw[,5:ncol(raw)]
   
-  dates <- strsplit(substr(colnames(counts), 2, nchar(colnames(counts))), "[.]")
-  doy   <- julian(
-    sapply(dates, function(x) as.numeric(x[1])),
-    sapply(dates, function(x) as.numeric(x[2])),
-    sapply(dates, function(x) as.numeric(x[3]))+2000,
-    c(month=1, day=1, year=2020))+1
-  dates <- sapply(dates, function(x) paste0(x[1], "/", x[2], "/20", x[3]))
+
+    
   
-  # Goddamn it John Hopkins, why the mixed data now? 
-  # If they recorded it consistently then this wouldn't be so difficult
-  # And now they changed it back to just simple sum
-  counts <-  colSums(raw[,5:ncol(raw)], na.rm=TRUE)
+  data$date <- as.Date(date, "%m-%d-%Y")
+  data$doy  <- doy
+
+  data
+}
+
+hopkins_raw <- function(start="01-22-2020", end=Sys.Date()-1, verbose=FALSE)
+{
+  if(class(start) != "Date") start <- as.Date(start, "%m-%d-%Y")
+  if(class(end  ) != "Date") end   <- as.Date(end,   "%m-%d-%Y")
+  dates <- seq(start, end, "days")
   
-  # <- if(region == "US")
-  # {
-  #   county.level <- !Reduce(`|`, lapply(
-  #     c("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID",
-  #       "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
-  #       "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
-  #       "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY")
-  #     , function(x) grepl(x, as.character(raw$Province.State))))
-  #   
-  #   raw1 <- raw[county.level,5:ncol(raw)]
-  #   raw2 <- raw[!county.level,5:ncol(raw)]
-  #   pmax(colSums(raw1), colSums(raw2), na.rm=TRUE)
-  # } else
-  # {
-  #   colSums(raw[,5:ncol(raw)])
-  # }
+  data <- do.call(rbind, lapply(dates, function(x) hopkins_daily(x, verbose)))
   
-  data <- data.frame(
-    date   = dates,
-    doy    = doy,
-    count  = counts
-  )
-  
-  rownames(data) <- NULL
-  colnames(data) <- c("date", "doy", category)
+  colnames(data) <- c("Province.State", "Country.Region", "cases", "deaths", "date", "doy")
   
   data
 }
 
-hopkins <- function(region, excludes=NULL)
+hopkins <- function(region=NULL, province=NULL, province.excludes=NULL, raw=hopkins_raw())
 {
-  cases      <- hopkins_timeseries(region, "cases",      excludes)
-  deaths     <- hopkins_timeseries(region, "deaths",     excludes)
-  #recoveries <- hopkins_timeseries(region, "recoveries", excludes)
+  if(!is.null(region))   raw <- raw[raw$Country.Region %in% region,]
+  if(!is.null(province)) raw <- raw[raw$Province.State %in% province,] 
+  if(!is.null(province.excludes))
+  {
+    keep <- !Reduce(`|`, lapply(province.excludes, function(x) grepl(x, as.character(raw$Province.State), ignore.case=TRUE)))
+    raw  <- raw[keep,]
+  }
   
-  # This assumes consistency between published datasets
-  cases$deaths     <- deaths$deaths
-  #cases$recoveries <- recoveries$recoveries
+  cases  <- aggregate(raw$cases,  by=list(raw$doy), sum)
+  deaths <- aggregate(raw$deaths, by=list(raw$doy), sum)
   
-  cases
+  data.frame(date=unique(raw$date), doy=cases$Group.1, cases=cases$x, deaths=deaths$x)
 }
+
   
 
 
