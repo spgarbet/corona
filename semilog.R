@@ -1,13 +1,13 @@
 semilog    <- function(data, ...)
 {
   with(data, {
-    plot(doy[cases>0], cases[cases>0], log="y",
+    plot(date[cases>0], cases[cases>0], log="y",
          xlab="2020 Julian Day",
          ylab="Cases (semilog)",
          yaxt="n",
          ...,
     )
-    points(doy[deaths > 0], deaths[deaths > 0], pch=4)
+    points(date[deaths > 0], deaths[deaths > 0], pch=4)
     
     y1 <- list(...)[['ylim']]
     if(is.null(y1)) y1 <- range(cases[cases >0])

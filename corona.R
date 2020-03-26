@@ -14,17 +14,18 @@ italy_data <- hopkins("Italy",                   raw=raw)
 sk_data    <- hopkins(c("Korea, South", "South Korea", "Republic of Korea"), raw=raw)
 
 
-
 #df <- us_data[38:length(us_data$doy),]
-df <- us_data[38:69,]
+#df <- us_data[38:69,]
 
-us_model <- lm(log(cases) ~ doy, df)
+df <- us_data[us_data$date > as.Date("02-27-2020", "%m-%d-%Y"),]
+
+us_model <- lm(log(cases) ~ date, df)
 
 summary(us_model)
 
-p_rng <- 58:100
+p_rng <- seq(as.Date("02-27-2020", "%m-%d-%Y"), as.Date("04-10-2020", "%m-%d-%Y"), "days")
 
-us_pred <- exp(predict(us_model, data.frame(doy=p_rng), interval=c("prediction")))
+us_pred <- exp(predict(us_model, data.frame(date=p_rng), interval=c("prediction")))
 us_pred 
 
 png("us.png")
@@ -32,8 +33,8 @@ png("us.png")
 semilog(
   us_data, 
   main="Non-repatriated US COVID-19 Cases",
+  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
   ylim=c(1, 1e6),
-  xlim=c(20, 100),
   sub="Source: John Hopkins Curated Dataset"
 )
 
@@ -47,24 +48,23 @@ polygon(
 # Annotations to US Plot
 curve(expgrowth(us_model,x), col='red', add=TRUE)
 
-text(64, 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), "% a day"), pos=4)
-text(64, 45, paste0("Double ", round(log(2)/coef(us_model)[2], 2), " days"), pos=4)
-abline(v=57, col='blue')
-text(57, 100000, "Trump", pos=2)
-text(57, 65000, "'We’re going very substantially down, not up.'", pos=2, cex=0.70)
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+text(as.Date("2020-03-04"), 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), "% a day"), pos=4)
+text(as.Date("2020-03-04"), 45, paste0("Double ", round(log(2)/coef(us_model)[2], 2), " days"), pos=4)
+abline(v=as.Date("2020-02-26"), col='blue')
+text(as.Date("2020-02-26"), 100000, "Trump", pos=2)
+text(as.Date("2020-02-26"), 65000, "'We’re going very substantially down, not up.'", pos=2, cex=0.70)
+legend(as.Date("2020-01-25"), 10000, c("Cases", "Deaths"), pch=c(1,4))
 
-abline(v=72, col='blue')
-text(72, 10000, "Europe",pos=2)
-text(72,  6500, "Travel Ban", pos=2)
+abline(v=as.Date("2020-03-12"), col='blue')
+text(as.Date("2020-03-12"), 10000, "Europe",pos=2)
+text(as.Date("2020-03-12"),  6500, "Travel Ban", pos=2)
 
 dev.off()
 
 
 # Number table of predictions
 us_pred      <- as.data.frame(round(us_pred))
-mdy          <- month.day.year(p_rng - 1, c(month=1, day=1, year=2020))
-us_pred$date <- ISOdatetime(mdy$year, mdy$month, mdy$day, 0, 0, 0)
+us_pred$date <- p_rng
 
 
 ### Italy
@@ -73,16 +73,16 @@ png("italy.png")
 semilog(
   italy_data,
   ylim=c(1, 1e6),
-  xlim=c(20, 100),
+  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
   main="Italy COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
-abline(v=53, col='blue') # First Quarantine
-text(53, 75000, "Quarantine", pos=2)
-abline(v=67, col='blue') # Second Quarantine
-text(67, 50000, "Expanded", pos=2)
+abline(v=as.Date("2020-02-22"), col='blue') # First Quarantine
+text(as.Date("2020-02-22"), 75000, "Quarantine", pos=2)
+abline(v=as.Date("2020-03-07"), col='blue') # Second Quarantine
+text(as.Date("2020-03-07"), 50000, "Expanded", pos=2)
 
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-25"), 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 ### South Korea
@@ -91,18 +91,18 @@ png("sk.png")
 semilog(
   sk_data,
   ylim=c(1, 1e6),
-  xlim=c(20, 100),
+  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
   main="South Korea COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
-abline(v=49, col='blue')
-text(49, 100000, "Shincheonji", pos=2)
-abline(v=60, col='blue') 
-text(60, 50000, "Mass\nClosures", pos=2)
+abline(v=as.Date("2020-02-18"), col='blue')
+text(as.Date("2020-02-18"), 100000, "Shincheonji", pos=2)
+abline(v=as.Date("2020-02-29"), col='blue') 
+text(as.Date("2020-02-29"), 50000, "Mass\nClosures", pos=2)
 #abline(v=67, col='blue') # Second Quarantine
 #text(67, 50000, "Expanded", pos=2)
 
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-25"), 10000, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 iran_data <- hopkins('Iran', raw=raw)
@@ -110,7 +110,7 @@ png('iran.png')
 semilog(
   iran_data,
   ylim=c(1, 1e6),
-  xlim=c(20, 100),
+  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
   main="Iran COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -124,7 +124,7 @@ png('spain.png')
 semilog(
   spain_data,
   ylim=c(1, 1e6),
-  xlim=c(20, 100),
+  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
   main="Spain COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -138,7 +138,7 @@ png('france.png')
 semilog(
   france_data,
   ylim=c(1, 1e6),
-  xlim=c(20, 100),
+  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
   main="France COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -152,7 +152,7 @@ png('germany.png')
 semilog(
   germany_data,
   ylim=c(1, 1e6),
-  xlim=c(20, 100),
+  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
   main="Germany COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -165,7 +165,7 @@ png('norway.png')
 semilog(
   norway_data,
   ylim=c(1, 1e6),
-  xlim=c(20, 100),
+  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
   main="Norway COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
