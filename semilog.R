@@ -2,7 +2,7 @@ semilog    <- function(data, ...)
 {
   with(data, {
     plot(date[cases>0], cases[cases>0], log="y",
-         xlab="2020 Julian Day",
+         xlab="2020 Date",
          ylab="Cases (semilog)",
          yaxt="n",
          ...,

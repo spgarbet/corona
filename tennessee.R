@@ -1,63 +1,71 @@
-source("johnhopkins.R")
-source("semilog.R")
 
+library(chron)
 
-tennessee_timeseries <- function(category)
+hopkins_daily <- function(date, verbose=FALSE)
 {
-  source <- if(category == "cases") 
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv" else
-  if(category == "deaths")
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"    else
-  if(category == "recoveries")
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv" else
-  stop("hopkins_raw category must be one of the following: cases, deaths, recoveries")
+  root <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
+
+  if(class(date) == "Date") date <- format(date, "%m-%d-%Y")
   
-  data <- read.csv(source)
-  raw  <- data[data$Country.Region %in% "US" &
-                 (grepl("TN", data$Province.State) | grepl("Tennessee", data$Province.State)),]
+  if(verbose) cat("Pulling", date, "from John Hopkins github\n")
   
-  counts  <- raw[,5:ncol(raw)]
+
+  data <- read.csv(paste0(root, date, ".csv"))
+  if(verbose) cat(" ", colnames(data), "\n")
   
-  dates <- strsplit(substr(colnames(counts), 2, nchar(colnames(counts))), "[.]")
-  doy   <- julian(
-    sapply(dates, function(x) as.numeric(x[1])),
-    sapply(dates, function(x) as.numeric(x[2])),
-    sapply(dates, function(x) as.numeric(x[3]))+2000,
-    c(month=1, day=1, year=2020))+1
-  dates <- sapply(dates, function(x) paste0(x[1], "/", x[2], "/20", x[3]))
   
-  counts <-  colSums(raw[,5:ncol(raw)])
+  x    <- strsplit(substr(date, 2, nchar(date)), "-")[[1]]
+  doy  <- julian( as.numeric(x[1]),
+                  as.numeric(x[2]),
+                  as.numeric(x[3]),
+                  c(month=1, day=1, year=2020)) + 1
   
-  data <- data.frame(
-    date   = dates,
-    doy    = doy,
-    count  = counts
-  )
+  # John Hopkins does not maintain consistent naming
+  if(as.Date(date,"%m-%d-%Y") < as.Date("03-22-2020", "%m-%d-%Y"))
+    data <- data[,c("Province.State", "Country.Region", "Confirmed", "Deaths")]
+  else
+  {
+    data <- data[,c("Province_State", "Country_Region", "Confirmed", "Deaths")]
+    colnames(data) <- c("Province.State", "Country.Region", "Confirmed", "Deaths")
+  }
   
-  rownames(data) <- NULL
-  colnames(data) <- c("date", "doy", category)
+  data$date <- as.Date(date, "%m-%d-%Y")
+  data$doy  <- doy
+
+  data
+}
+
+hopkins_cases <- function(start="03-05-2020", end=Sys.Date()-1, verbose=FALSE)
+{
+  if(class(start) != "Date") start <- as.Date(start, "%m-%d-%Y")
+  if(class(end  ) != "Date") end   <- as.Date(end,   "%m-%d-%Y")
+  dates <- seq(start, end, "days")
+  
+  data <- do.call(rbind, lapply(dates, function(x) hopkins_daily(x, verbose)))
+  
+  colnames(data) <- c("Province.State", "Country.Region", "cases", "deaths", "date", "doy")
   
   data
 }
 
 tennessee <- function()
 {
-  cases      <- tennessee_timeseries("cases")
-  deaths     <- tennessee_timeseries("deaths")
-  recoveries <- tennessee_timeseries("recoveries")
+  data <- hopkins_cases()
+
+  data <- data[data$Country.Region %in% "US" &
+               (grepl("TN", data$Province.State) | grepl("Tennessee", data$Province.State)),]
   
-  # This assumes consistency between published datasets
-  cases$deaths     <- deaths$deaths
-  cases$recoveries <- recoveries$recoveries
+  cases  <- aggregate(tn_data$cases,  by=list(tn_data$doy), sum)
+  deaths <- aggregate(tn_data$deaths, by=list(tn_data$doy), sum)
   
-  cases
+  data.frame(date=unique(data$date), doy=cases$Group.1, cases=cases$x, deaths=deaths$x)
 }
 
-semilog(
-  tennessee(),
-  ylim=c(1, 1e6),
-  xlim=c(20, 100),
-  main="Tennessee COVID-19 Cases",
-  sub="Source: John Hopkins Curated Dataset"
-)
+
+tn_data <- tennessee()
+tn_data <- tn_data[tn_data$cases>0 & !is.na(tn_data$cases),]
+
+# Always keep most recent pull in case of upstream changes
+save(tn_data, file="tennessee.Rdata")
+
 
