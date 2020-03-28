@@ -1,5 +1,7 @@
 
 # https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_outbreak
+# https://medium.com/analytics-vidhya/covid19-transmission-forecast-in-italy-a-python-tutorial-for-sri-model-8c103c0a95b9
+# http://uop.whoi.edu/UOPinstruments/frodo/aer/leap-julian-day-table.html
 
 source('johnhopkins.R')
 source('semilog.R')

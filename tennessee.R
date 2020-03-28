@@ -55,8 +55,9 @@ tennessee <- function()
   data <- data[data$Country.Region %in% "US" &
                (grepl("TN", data$Province.State) | grepl("Tennessee", data$Province.State)),]
   
-  cases  <- aggregate(tn_data$cases,  by=list(tn_data$doy), sum)
-  deaths <- aggregate(tn_data$deaths, by=list(tn_data$doy), sum)
+
+  cases  <- aggregate(data$cases,  by=list(data$doy), sum, na.rm=TRUE)
+  deaths <- aggregate(data$deaths, by=list(data$doy), sum, na.rm=TRUE)
   
   data.frame(date=unique(data$date), doy=cases$Group.1, cases=cases$x, deaths=deaths$x)
 }
