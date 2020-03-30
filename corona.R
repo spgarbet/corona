@@ -61,6 +61,9 @@ abline(v=as.Date("2020-03-12"), col='blue')
 text(as.Date("2020-03-12"), 10000, "Europe",pos=2)
 text(as.Date("2020-03-12"),  6500, "Travel Ban", pos=2)
 
+
+text(as.Date("2020-03-29"), 150000, "Rate Change", pos=2)
+
 dev.off()
 
 
