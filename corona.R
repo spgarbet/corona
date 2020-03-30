@@ -25,7 +25,7 @@ us_model <- lm(log(cases) ~ date, df)
 
 summary(us_model)
 
-p_rng <- seq(as.Date("02-27-2020", "%m-%d-%Y"), as.Date("04-10-2020", "%m-%d-%Y"), "days")
+p_rng <- seq(as.Date("02-27-2020", "%m-%d-%Y"), as.Date("03-27-2020", "%m-%d-%Y"), "days")
 
 us_pred <- exp(predict(us_model, data.frame(date=p_rng), interval=c("prediction")))
 us_pred 
