@@ -26,6 +26,7 @@ The first broad measure has been taken. A Europe travel ban. The graph clearly s
 
 March 29th It has broken beneath the exponential 95% prediction interval for the first time since the climb began. This is the breakpoint from the exponential expansion!
 
+
 ### Trump Quotes
 
 * January 22: “We have it totally under control. It’s one person coming in from China. It’s going to be just fine.”
@@ -56,6 +57,7 @@ March 29th It has broken beneath the exponential 95% prediction interval for the
 * March 18 “People are dying that never died before.“
 * March 18 “I always treated the Chinese Virus very seriously, and have done a very good job from the beginning, including my very early decision to close the “borders” from China - against the wishes of almost all. Many lives were saved. The Fake News new narrative is disgraceful & false!“
 * March 20 When asked “What do you say to Americans who are watching right now who are scared?“, Trump responded “I say that you're a terrible reporter, that's what I say.“
+* March 29 “If we have between 100,000 and 200,000 [deaths] we’ve all together done a very good job”
 
 ## Italy
 
