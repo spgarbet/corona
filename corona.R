@@ -68,6 +68,7 @@ text(as.Date("2020-03-12"),  6500, "Travel Ban", pos=2)
 
 
 text(as.Date("2020-03-29"), 150000, "Rate Change", pos=2)
+text(as.Date("2020-03-28"), 75000, paste0("Double ", round(log(2)/coef(us_model2)[2], 2), " days"), pos=4)
 
 dev.off()
 
