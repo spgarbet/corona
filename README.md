@@ -16,7 +16,7 @@ Exponential prediction is based on assumption that nothing occurs to change the 
 
 The first broad measure has been taken. A Europe travel ban. The graph clearly shows it spreading inside the US. Prediction: It's too late for any such measure to have much effect. It's like getting bedbugs and saying we're no longer going to be visiting hotels to stop them.
 
-March 29th It has broken beneath the exponential 95% prediction interval for the first time since the climb began. This is the breakpoint from the exponential expansion!
+March 29th It has broken beneath the exponential 95% prediction interval for the first time since the climb began. This is the breakpoint from the initial exponential expansion!
 
 
 ### Trump Quotes
