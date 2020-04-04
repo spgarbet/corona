@@ -53,6 +53,8 @@ polygon(
 # Annotations to US Plot
 curve(expgrowth(us_model,x), col='red', add=TRUE)
 
+curve(expgrowth(us_model2,x), col='green', add=TRUE, from=18349, to=18382)
+
 text(as.Date("2020-03-04"), 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), "% a day"), pos=4)
 text(as.Date("2020-03-04"), 45, paste0("Double ", round(log(2)/coef(us_model)[2], 2), " days"), pos=4)
 abline(v=as.Date("2020-02-26"), col='blue')
