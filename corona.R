@@ -19,17 +19,19 @@ sk_data    <- hopkins(c("Korea, South", "South Korea", "Republic of Korea"), raw
 #df <- us_data[38:length(us_data$doy),]
 #df <- us_data[38:69,]
 
-df <- us_data[us_data$date > as.Date("02-27-2020", "%m-%d-%Y") &
+# First Exponential Phase
+df <- us_data[us_data$date >= as.Date("02-27-2020", "%m-%d-%Y") &
               us_data$date <= as.Date("03-27-2020","%m-%d-%Y"),]
-
 us_model <- lm(log(cases) ~ date, df)
 
-summary(us_model)
-
-p_rng <- seq(as.Date("02-28-2020", "%m-%d-%Y"), as.Date("03-27-2020", "%m-%d-%Y"), "days")
-
+p_rng <- seq(as.Date("02-27-2020", "%m-%d-%Y"), as.Date("03-27-2020", "%m-%d-%Y"), "days")
 us_pred <- exp(predict(us_model, data.frame(date=p_rng), interval=c("prediction")))
-us_pred 
+
+# Second Exponential Phase
+df <- us_data[us_data$date >=as.Date("03-28-2020", "%m-%d-%Y"),]
+us_model2 <- lm(log(cases) ~ date, df)
+p_rng2 <- seq(as.Date("04-01-2020", "%m-%d-%Y"), as.Date("04-30-2020", "%m-%d-%Y"), "days")
+us_pred2 <- exp(predict(us_model2, data.frame(date=p_rng2), interval=c("prediction")))
 
 png("us.png")
 
@@ -69,8 +71,8 @@ dev.off()
 
 
 # Number table of predictions
-us_pred      <- as.data.frame(round(us_pred))
-us_pred$date <- p_rng
+us_pred2      <- as.data.frame(round(us_pred2))
+us_pred2$date <- p_rng2
 
 
 ### Italy
