@@ -4,14 +4,6 @@ Short bit of code to look at cases for China and US on semi-log scale. Why the c
 
 I am not speaking for Vanderbilt University Medical Center. I do work there, but this is not affiated nor to be construed in any way as relating to their policies or statements. 
 
-## China
-
-![China Data](./China.png)
-
-China data was taken from their official NHC website.
-
-The China data shows a clear effect of the quarantine. The estimated slope of the top plateau is shrinking a bit every day. Not shown is that to the left of the graph there is noise similar to the US plot.
-
 ## United States
 
 ![US Data](./us.png)
@@ -103,3 +95,12 @@ Note the growth rates are very similar
 
 
 
+## China
+
+![China Data](./China.png)
+
+China data was taken from their official NHC website.
+
+The China data shows a clear effect of the quarantine. The estimated slope of the top plateau is shrinking a bit every day. Not shown is that to the left of the graph there is noise similar to the US plot.
+
+China's data has been called into question as it fits the expected epidemology curves too perfectly, and based on observed deaths and funerals.
