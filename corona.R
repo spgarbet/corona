@@ -19,13 +19,14 @@ sk_data    <- hopkins(c("Korea, South", "South Korea", "Republic of Korea"), raw
 #df <- us_data[38:length(us_data$doy),]
 #df <- us_data[38:69,]
 
-df <- us_data[us_data$date > as.Date("02-27-2020", "%m-%d-%Y"),]
+df <- us_data[us_data$date > as.Date("02-27-2020", "%m-%d-%Y") &
+              us_data$date <= as.Date("03-27-2020","%m-%d-%Y"),]
 
 us_model <- lm(log(cases) ~ date, df)
 
 summary(us_model)
 
-p_rng <- seq(as.Date("02-27-2020", "%m-%d-%Y"), as.Date("03-27-2020", "%m-%d-%Y"), "days")
+p_rng <- seq(as.Date("02-28-2020", "%m-%d-%Y"), as.Date("03-27-2020", "%m-%d-%Y"), "days")
 
 us_pred <- exp(predict(us_model, data.frame(date=p_rng), interval=c("prediction")))
 us_pred 
