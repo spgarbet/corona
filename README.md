@@ -53,6 +53,7 @@ March 29th It has broken beneath the exponential 95% prediction interval for the
 * March 30 “I haven't heard about testing in weeks. I haven't heard about testing being a problem.“ 
 * April 3 “It's not like we have a massive recession or worse.“
 * April 3 “The original test, the ones we inherited… were broken, they were obsolete, they were not good tests.“
+* April 5 When Dr. Fauci was asked “What is the medical evidence [on hydrochloroquine]?“ Trump injected “You don't have to ask the question.“
 
 ## Italy
 
