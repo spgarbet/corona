@@ -55,6 +55,7 @@ March 29th It has broken beneath the exponential 95% prediction interval for the
 * April 3 “It's not like we have a massive recession or worse.“
 * April 3 “The original test, the ones we inherited… were broken, they were obsolete, they were not good tests.“
 * April 5 When Dr. Fauci was asked “What is the medical evidence [on hydrochloroquine]?“ Trump injected “You don't have to ask the question.“
+* April 19 “It was hard to get it aroused, and it is hard to get it aroused, but we got it aroused.“ [COVID-19 response]
 * April 25th “Question that probably some of you are thinking of if you're totally into that world, which I find to be very interesting. So supposing we hit the body with a tremendous, whether it's ultraviolet or just very powerful light. And I think you said that hasn't been checked but you're going to test it. And then I said, supposing you brought the light inside the body, which you can do either through the skin or in some other way. And I think you said you're gonna test that, too. Sounds interesting, right? And then I see the disinfectant where it knocks it out in a minute. One minute. And is there a way we can do something like that by injection inside or, or almost a cleaning? Because you see it gets on the lungs and it does a tremendous number, so it will be interesting to check that. So that you're going to have to use medical doctors. But it sounds, it sounds interesting to me. So we'll see. But the whole concept of the light, the way it kills it in one minute, that's, that's pretty powerful.“
 
 ## Italy
