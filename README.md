@@ -97,7 +97,11 @@ Note the growth rates are very similar
 
 ![Norway](./norway.png)
 
+## Sweden
 
+Sweden is a very interesting counter case. They have opted for doing very little and getting to herd immunity as quickly as possible. However, their curve still trends downward. They have advocated for personal responsibility. Their population is around 10 million.
+
+![Sweden](./sweden.png)
 
 ## China
 
