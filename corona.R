@@ -1,10 +1,12 @@
-
+    
 # https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_outbreak
 # https://medium.com/analytics-vidhya/covid19-transmission-forecast-in-italy-a-python-tutorial-for-sri-model-8c103c0a95b9
 # http://uop.whoi.edu/UOPinstruments/frodo/aer/leap-julian-day-table.html
 
 source('johnhopkins.R')
 source('semilog.R')
+
+xlim       <- c(as.Date("2020-01-22"),as.Date("2020-05-15"))
 
 raw        <- hopkins_raw()
 
@@ -38,7 +40,7 @@ png("us.png")
 semilog(
   us_data, 
   main="Non-repatriated US COVID-19 Cases",
-  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
+  xlim=xlim,
   ylim=c(1, 1e6),
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -60,7 +62,9 @@ text(as.Date("2020-03-04"), 75, paste0(round(100*(exp(coef(us_model)[2])-1),1), 
 text(as.Date("2020-03-04"), 45, paste0("Double ", round(log(2)/coef(us_model)[2], 2), " days"), pos=4)
 abline(v=as.Date("2020-02-26"), col='blue')
 text(as.Date("2020-02-26"), 100000, "Trump", pos=2)
-text(as.Date("2020-02-26"), 65000, "'We’re going very substantially down, not up.'", pos=2, cex=0.70)
+text(as.Date("2020-02-26"), 65000, "'We’re going very", pos=2, cex=0.70)
+text(as.Date("2020-02-26"), 45000, "substantially down, not up.'", pos=2, cex=0.70)
+
 legend(as.Date("2020-01-25"), 10000, c("Cases", "Deaths"), pch=c(1,4))
 
 abline(v=as.Date("2020-03-12"), col='blue')
@@ -85,7 +89,7 @@ png("italy.png")
 semilog(
   italy_data,
   ylim=c(1, 1e6),
-  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
+  xlim=xlim,
   main="Italy COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -103,7 +107,7 @@ png("sk.png")
 semilog(
   sk_data,
   ylim=c(1, 1e6),
-  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
+  xlim=xlim,
   main="South Korea COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -122,7 +126,7 @@ png('iran.png')
 semilog(
   iran_data,
   ylim=c(1, 1e6),
-  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
+  xlim=xlim,
   main="Iran COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -136,7 +140,7 @@ png('spain.png')
 semilog(
   spain_data,
   ylim=c(1, 1e6),
-  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
+  xlim=xlim,
   main="Spain COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -150,7 +154,7 @@ png('france.png')
 semilog(
   france_data,
   ylim=c(1, 1e6),
-  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
+  xlim=xlim,
   main="France COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -164,7 +168,7 @@ png('germany.png')
 semilog(
   germany_data,
   ylim=c(1, 1e6),
-  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
+  xlim=xlim,
   main="Germany COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
@@ -177,7 +181,7 @@ png('norway.png')
 semilog(
   norway_data,
   ylim=c(1, 1e6),
-  xlim=c(as.Date("2020-01-22"),as.Date("2020-04-10")),
+  xlim=xlim,
   main="Norway COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )

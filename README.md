@@ -23,6 +23,7 @@ March 29th It has broken beneath the exponential 95% prediction interval for the
 
 * January 22: “We have it totally under control. It’s one person coming in from China. It’s going to be just fine.”
 * February 2: “We pretty much shut it down coming in from China.”
+* February 10: “A lot of people think that goes away in April with the heat. As the heat comes in. Typically that will go away in April. We're in great shape, though.“
 * February 24: “The Coronavirus is very much under control in the USA… Stock Market starting to look very good to me!”
 * February 25: “CDC and my Administration are doing a GREAT job of handling Coronavirus.”
 * February 25: “I think that's a problem that’s going to go away… They have studied it. They know very much. In fact, we’re very close to a vaccine.”
@@ -54,6 +55,7 @@ March 29th It has broken beneath the exponential 95% prediction interval for the
 * April 3 “It's not like we have a massive recession or worse.“
 * April 3 “The original test, the ones we inherited… were broken, they were obsolete, they were not good tests.“
 * April 5 When Dr. Fauci was asked “What is the medical evidence [on hydrochloroquine]?“ Trump injected “You don't have to ask the question.“
+* April 25th “Question that probably some of you are thinking of if you're totally into that world, which I find to be very interesting. So supposing we hit the body with a tremendous, whether it's ultraviolet or just very powerful light. And I think you said that hasn't been checked but you're going to test it. And then I said, supposing you brought the light inside the body, which you can do either through the skin or in some other way. And I think you said you're gonna test that, too. Sounds interesting, right? And then I see the disinfectant where it knocks it out in a minute. One minute. And is there a way we can do something like that by injection inside or, or almost a cleaning? Because you see it gets on the lungs and it does a tremendous number, so it will be interesting to check that. So that you're going to have to use medical doctors. But it sounds, it sounds interesting to me. So we'll see. But the whole concept of the light, the way it kills it in one minute, that's, that's pretty powerful.“
 
 ## Italy
 
