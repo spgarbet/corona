@@ -6,7 +6,7 @@
 source('johnhopkins.R')
 source('semilog.R')
 
-xlim       <- c(as.Date("2020-01-22"),as.Date("2020-05-15"))
+xlim       <- c(as.Date("2020-01-22"),as.Date("2020-07-15"))
 
 raw        <- hopkins_raw()
 
@@ -41,7 +41,7 @@ semilog(
   us_data, 
   main="Non-repatriated US COVID-19 Cases",
   xlim=xlim,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   sub="Source: John Hopkins Curated Dataset"
 )
 
@@ -65,7 +65,7 @@ text(as.Date("2020-02-26"), 100000, "Trump", pos=2)
 text(as.Date("2020-02-26"), 65000, "'We’re going very", pos=2, cex=0.70)
 text(as.Date("2020-02-26"), 45000, "substantially down, not up.'", pos=2, cex=0.70)
 
-legend(as.Date("2020-01-25"), 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 
 abline(v=as.Date("2020-03-12"), col='blue')
 text(as.Date("2020-03-12"), 10000, "Europe",pos=2)
@@ -88,7 +88,7 @@ png("italy.png")
 
 semilog(
   italy_data,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   xlim=xlim,
   main="Italy COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
@@ -98,7 +98,7 @@ text(as.Date("2020-02-22"), 75000, "Quarantine", pos=2)
 abline(v=as.Date("2020-03-07"), col='blue') # Second Quarantine
 text(as.Date("2020-03-07"), 50000, "Expanded", pos=2)
 
-legend(as.Date("2020-01-25"), 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 ### South Korea
@@ -106,7 +106,7 @@ png("sk.png")
 
 semilog(
   sk_data,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   xlim=xlim,
   main="South Korea COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
@@ -118,20 +118,20 @@ text(as.Date("2020-02-29"), 50000, "Mass\nClosures", pos=2)
 #abline(v=67, col='blue') # Second Quarantine
 #text(67, 50000, "Expanded", pos=2)
 
-legend(as.Date("2020-01-25"), 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 iran_data <- hopkins('Iran', raw=raw)
 png('iran.png')
 semilog(
   iran_data,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   xlim=xlim,
   main="Iran COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
 
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 
@@ -139,13 +139,13 @@ spain_data <- hopkins('Spain', raw=raw)
 png('spain.png')
 semilog(
   spain_data,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   xlim=xlim,
   main="Spain COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
 
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 
@@ -153,13 +153,13 @@ france_data <- hopkins('France', raw=raw)
 png('france.png')
 semilog(
   france_data,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   xlim=xlim,
   main="France COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
 
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 
@@ -167,37 +167,37 @@ germany_data <- hopkins('Germany', raw=raw)
 png('germany.png')
 semilog(
   germany_data,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   xlim=xlim,
   main="Germany COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
 
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 norway_data <- hopkins('Norway', raw=raw)
 png('norway.png')
 semilog(
   norway_data,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   xlim=xlim,
   main="Norway COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
 
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
 
 sweden_data <- hopkins('Sweden', raw=raw)
 png('sweden.png')
 semilog(
   sweden_data,
-  ylim=c(1, 1e6),
+  ylim=c(1, 1e7),
   xlim=xlim,
   main="Sweden COVID-19 Cases",
   sub="Source: John Hopkins Curated Dataset"
 )
 
-legend(25, 10000, c("Cases", "Deaths"), pch=c(1,4))
+legend(as.Date("2020-01-24"), 5e6, c("Cases", "Deaths"), pch=c(1,4))
 dev.off()
